@@ -238,6 +238,19 @@ Contents are defined and used the same way, under new names:
 Not available: `replaceInstance()` on movie clips and `replaceTexture()` on sprites and bitmaps, besides what
 pixi-animate-runtime does not have.
 
+## Claude Code skills
+
+The package comes with skills for Claude Code (Anthropic's AI coding tool) in `dist-skills/`: `pixim-animate-runtime-guide`, which tells it how to load and play runtime content in Pixim.js, and the skills of the packages it builds on (`pixi-animate-runtime-guide`, `animate-data-converter-guide`). To
+let Claude Code use them in your project, copy them into the project's `.claude/skills/`:
+
+```
+mkdir -p .claude/skills
+cp -r node_modules/@tawaship/pixim-animate-runtime/dist-skills/* .claude/skills/
+```
+
+Copy them again after updating the package. Each skill names the versions it was written for; with another
+version, it tells Claude Code to follow the type definitions in `node_modules` where they disagree.
+
 ## How correctness is checked
 
 This package was developed with Claude (Anthropic's AI assistant). Its correctness rests on testing rather
@@ -253,6 +266,7 @@ into the package on purpose to confirm that the comparison notices them.
 - First release: loads runtime content as an asset of a Pixim content (`defineAnimateContentsTo`, `addAnimateContentsTo`,
   with the Pixim content's `version` and `xhr`) and plays it in a Pixim container (`AnimateContainer`, with `speed`,
   `overSpeed` and `smooth`)
+- Claude Code skills in `dist-skills/`, published with the package
 
 ## License
 

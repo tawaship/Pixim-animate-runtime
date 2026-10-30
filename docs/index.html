@@ -208,6 +208,14 @@ be generated again. How the content is played otherwise changes as described for
 </table>
 <p>Not available: <code>replaceInstance()</code> on movie clips and <code>replaceTexture()</code> on sprites and bitmaps, besides what
 pixi-animate-runtime does not have.</p>
+<h2 id="claude-code-skills" class="tsd-anchor-link">Claude Code skills<a href="#claude-code-skills" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The package comes with skills for Claude Code (Anthropic's AI coding tool) in <code>dist-skills/</code>: <code>pixim-animate-runtime-guide</code>, which tells it how to load and play runtime content in Pixim.js, and the skills of the packages it builds on (<code>pixi-animate-runtime-guide</code>, <code>animate-data-converter-guide</code>). To
+let Claude Code use them in your project, copy them into the project's <code>.claude/skills/</code>:</p>
+<pre><code><span class="hl-0">mkdir</span><span class="hl-1"> -</span><span class="hl-0">p</span><span class="hl-1"> .</span><span class="hl-0">claude</span><span class="hl-1">/</span><span class="hl-0">skills</span><br/><span class="hl-0">cp</span><span class="hl-1"> -</span><span class="hl-0">r</span><span class="hl-1"> </span><span class="hl-0">node_modules</span><span class="hl-1">/@</span><span class="hl-0">tawaship</span><span class="hl-1">/</span><span class="hl-0">pixim</span><span class="hl-1">-</span><span class="hl-0">animate</span><span class="hl-1">-</span><span class="hl-0">runtime</span><span class="hl-1">/</span><span class="hl-0">dist</span><span class="hl-1">-</span><span class="hl-0">skills</span><span class="hl-14">/* .claude/skills/</span>
+</code><button>Copy</button></pre>
+
+<p>Copy them again after updating the package. Each skill names the versions it was written for; with another
+version, it tells Claude Code to follow the type definitions in <code>node_modules</code> where they disagree.</p>
 <h2 id="how-correctness-is-checked" class="tsd-anchor-link">How correctness is checked<a href="#how-correctness-is-checked" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>This package was developed with Claude (Anthropic's AI assistant). Its correctness rests on testing rather
 than on trust in the author: it is run with Pixim.js, and what it loads (URLs, versions, request options,
@@ -220,6 +228,7 @@ into the package on purpose to confirm that the comparison notices them.</p>
 <li>First release: loads runtime content as an asset of a Pixim content (<code>defineAnimateContentsTo</code>, <code>addAnimateContentsTo</code>,
 with the Pixim content's <code>version</code> and <code>xhr</code>) and plays it in a Pixim container (<code>AnimateContainer</code>, with <code>speed</code>,
 <code>overSpeed</code> and <code>smooth</code>)</li>
+<li>Claude Code skills in <code>dist-skills/</code>, published with the package</li>
 </ul>
 <h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>MIT</p>
@@ -249,6 +258,7 @@ with the Pixim content's <code>version</code> and <code>xhr</code>) and plays it
 <li><a href="#options-of-the-pixim-content"><span>Options of the <wbr/>Pixim content</span></a></li>
 <li><a href="#playing"><span>Playing</span></a></li></ul></li>
 <li><a href="#coming-from-pixim-animate-container"><span>Coming from pixim-<wbr/>animate-<wbr/>container</span></a></li>
+<li><a href="#claude-code-skills"><span>Claude <wbr/>Code skills</span></a></li>
 <li><a href="#how-correctness-is-checked"><span>How correctness is checked</span></a></li>
 <li><a href="#change-log"><span>Change log</span></a></li>
 <li>
