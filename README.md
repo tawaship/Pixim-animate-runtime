@@ -8,13 +8,29 @@ what a Pixim application needs: contents are loaded as assets of a Pixim content
 them. Everything else (converting the published content, what is supported, the objects and their PixiJS
 nodes) is as described in the pixi-animate-runtime README.
 
+It plays the same content as [@tawaship/pixim-animate-container](https://github.com/tawaship/Pixim-animate-container)
+and is used the same way; what changes is listed under
+[Coming from pixim-animate-container](#coming-from-pixim-animate-container).
+
 **Status: under development.**
+
+API reference: https://tawaship.github.io/Pixim-animate-runtime/docs/
+
+Samples (content published from Animate, played by this package or by CreateJS): https://tawaship.github.io/Pixim-animate-runtime/samples/
 
 ## What you need
 
 - PixiJS 5.3 (`pixi.js` ^5.3.2) and Pixim.js 1.15 (`@tawaship/pixim.js` ^1.15.2) in your application
 - Runtime content files, made from the published content with the command line tool of pixi-animate-runtime
-  (`npx pixi-animate-runtime <published directory>`)
+  (`npx pixi-animate-runtime <published directory>`). Making them runs the published JavaScript in Node.js:
+  convert only content you trust (see [the note in its README](https://github.com/tawaship/pixi-animate-runtime#readme))
+
+## Supported versions
+
+- Content published by **Adobe Animate 24.0.15** for HTML5 Canvas. What this package reads is the form of the published
+  JavaScript, which depends on the version of Animate; content published by other versions has not been checked
+- PixiJS 5.3 (`pixi.js` ^5.3.2). Checked with 5.3.9
+- Pixim.js 1.15 (`@tawaship/pixim.js` ^1.15.2). Checked with 1.15.2
 
 ## Playing content
 
@@ -99,11 +115,40 @@ frame of the application plays the roots put on it with `addCreatejs`, at their 
   stop playing)
 - `speed` changes the playback speed (`1` is the published frame rate, `0` stops). `overSpeed = false` plays at
   most one frame per frame of the application
+- `smooth` (`true` by default) keeps the playing even when the time between frames of the application varies a
+  little, while keeping to the real time, as described for pixi-animate-runtime. `false` plays by the time of
+  each frame as it is
 - `removeCreatejs(instance)` takes an instance off; a movie clip put on again starts from its first frame
 
 Everything pixi-animate-runtime exports is in `Pixim.animateRuntime` too (`loadContentAsync`, `tick`, the
 CreateJS-compatible classes, `VERSION` and so on), except that `AnimateContainer` is the Pixim container.
 With a bundler, import from `@tawaship/pixim-animate-runtime`.
+
+## Coming from pixim-animate-container
+
+pixim-animate-container loads CreateJS and the published JavaScript as assets of a Pixim content and runs them
+in the browser. This package loads runtime content files instead, generated from the published JavaScript at
+development time: CreateJS is not loaded, and after publishing again from Animate the runtime content has to
+be generated again. How the content is played otherwise changes as described for pixi-animate-runtime
+(see its README).
+
+Contents are defined and used the same way, under new names:
+
+| pixim-animate-container | pixim-animate-runtime |
+|---|---|
+| A `<script>` tag for CreateJS | None |
+| `Pixim.animate` | `Pixim.animateRuntime` |
+| `defineAnimatesTo(Game, { name: { id, basepath, filepath } })`, `filepath` being the published `.js` | `defineAnimateContentsTo(Game, { name: { id, basepath, filepath } })`, `filepath` being the runtime content file |
+| `addAnimatesTo` | `addAnimateContentsTo` |
+| `$.resources.animates.name`, the `lib` of the content | `$.resources.animateContents.name`, the content (its classes are in `content.lib`) |
+| `new $.resources.animates.name.game()` | `$.resources.animateContents.name.create('game')` |
+| `Pixim.animate.Container` | `AnimateContainer` |
+| `createjsSpeed` | `speed` |
+| `createjsOverSpeed` | `overSpeed` |
+| (none) | `smooth` (on by default; `false` plays as pixim-animate-container does) |
+
+Not available: `replaceInstance()` on movie clips and `replaceTexture()` on sprites and bitmaps, besides what
+pixi-animate-runtime does not have.
 
 ## How correctness is checked
 
@@ -112,6 +157,14 @@ than on trust in the author: it is run with Pixim.js, and what it loads (URLs, v
 images fetched into blob: URLs and released) and how its container plays (frame by frame, against the player
 of pixi-animate-runtime given the same frame times) are compared with what is expected. Known faults are put
 into the package on purpose to confirm that the comparison notices them.
+
+## Change log
+
+### 0.1.0
+
+- First release: loads runtime content as an asset of a Pixim content (`defineAnimateContentsTo`, `addAnimateContentsTo`,
+  with the Pixim content's `version` and `xhr`) and plays it in a Pixim container (`AnimateContainer`, with `speed`,
+  `overSpeed` and `smooth`)
 
 ## License
 

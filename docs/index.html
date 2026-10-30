@@ -1,0 +1,205 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@tawaship/pixim-animate-runtime - v0.1.0</title><meta name="description" content="Documentation for @tawaship/pixim-animate-runtime"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">@tawaship/pixim-animate-runtime - v0.1.0</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>@tawaship/pixim-animate-runtime - v0.1.0</h1></div>
+<div class="tsd-panel tsd-typography"><h1 id="tawashippixim-animate-runtime" class="tsd-anchor-link">@tawaship/pixim-animate-runtime<a href="#tawashippixim-animate-runtime" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Plays content published from Adobe Animate for HTML5 Canvas (CreateJS) in <a href="https://github.com/tawaship/Pixim.js">Pixim.js</a>
+applications.</p>
+<p>It is the player of <a href="https://github.com/tawaship/pixi-animate-runtime">@tawaship/pixi-animate-runtime</a>, with
+what a Pixim application needs: contents are loaded as assets of a Pixim content, and a Pixim container plays
+them. Everything else (converting the published content, what is supported, the objects and their PixiJS
+nodes) is as described in the pixi-animate-runtime README.</p>
+<p>It plays the same content as <a href="https://github.com/tawaship/Pixim-animate-container">@tawaship/pixim-animate-container</a>
+and is used the same way; what changes is listed under
+<a href="#coming-from-pixim-animate-container">Coming from pixim-animate-container</a>.</p>
+<p><strong>Status: under development.</strong></p>
+<p>API reference: <a href="https://tawaship.github.io/Pixim-animate-runtime/docs/">https://tawaship.github.io/Pixim-animate-runtime/docs/</a></p>
+<p>Samples (content published from Animate, played by this package or by CreateJS): <a href="https://tawaship.github.io/Pixim-animate-runtime/samples/">https://tawaship.github.io/Pixim-animate-runtime/samples/</a></p>
+<h2 id="what-you-need" class="tsd-anchor-link">What you need<a href="#what-you-need" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li>PixiJS 5.3 (<code>pixi.js</code> ^5.3.2) and Pixim.js 1.15 (<code>@tawaship/pixim.js</code> ^1.15.2) in your application</li>
+<li>Runtime content files, made from the published content with the command line tool of pixi-animate-runtime
+(<code>npx pixi-animate-runtime &lt;published directory&gt;</code>). Making them runs the published JavaScript in Node.js:
+convert only content you trust (see <a href="https://github.com/tawaship/pixi-animate-runtime#readme">the note in its README</a>)</li>
+</ul>
+<h2 id="supported-versions" class="tsd-anchor-link">Supported versions<a href="#supported-versions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li>Content published by <strong>Adobe Animate 24.0.15</strong> for HTML5 Canvas. What this package reads is the form of the published
+JavaScript, which depends on the version of Animate; content published by other versions has not been checked</li>
+<li>PixiJS 5.3 (<code>pixi.js</code> ^5.3.2). Checked with 5.3.9</li>
+<li>Pixim.js 1.15 (<code>@tawaship/pixim.js</code> ^1.15.2). Checked with 1.15.2</li>
+</ul>
+<h2 id="playing-content" class="tsd-anchor-link">Playing content<a href="#playing-content" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Load this package after Pixi.js and Pixim.js. It includes the player: do not load pixi-animate-runtime as well.</p>
+<pre><code class="html"><span class="hl-0">&lt;</span><span class="hl-1">script</span><span class="hl-2"> </span><span class="hl-3">src</span><span class="hl-2">=</span><span class="hl-4">&quot;pixi.js&quot;</span><span class="hl-0">&gt;&lt;/</span><span class="hl-1">script</span><span class="hl-0">&gt;</span><br/><span class="hl-0">&lt;</span><span class="hl-1">script</span><span class="hl-2"> </span><span class="hl-3">src</span><span class="hl-2">=</span><span class="hl-4">&quot;Pixim.js&quot;</span><span class="hl-0">&gt;&lt;/</span><span class="hl-1">script</span><span class="hl-0">&gt;</span><br/><span class="hl-0">&lt;</span><span class="hl-1">script</span><span class="hl-2"> </span><span class="hl-3">src</span><span class="hl-2">=</span><span class="hl-4">&quot;pixim-animate-runtime.js&quot;</span><span class="hl-0">&gt;&lt;/</span><span class="hl-1">script</span><span class="hl-0">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Define the contents a Pixim content uses, by name, and take them from <code>$.resources.animateContents</code> in its
+classes:</p>
+<pre><code class="js"><span class="hl-5">const</span><span class="hl-6"> { </span><span class="hl-7">defineAnimateContentsTo</span><span class="hl-6">, </span><span class="hl-7">AnimateContainer</span><span class="hl-6"> } = </span><span class="hl-8">Pixim</span><span class="hl-6">.</span><span class="hl-8">animateRuntime</span><span class="hl-6">;</span><br/><br/><span class="hl-5">const</span><span class="hl-6"> </span><span class="hl-7">Game</span><span class="hl-6"> = </span><span class="hl-8">Pixim</span><span class="hl-6">.</span><span class="hl-8">Content</span><span class="hl-6">.</span><span class="hl-9">create</span><span class="hl-6">();</span><br/><br/><span class="hl-9">defineAnimateContentsTo</span><span class="hl-6">(</span><span class="hl-8">Game</span><span class="hl-6">, {</span><br/><span class="hl-6">	</span><span class="hl-8">title:</span><span class="hl-6"> { </span><span class="hl-8">id:</span><span class="hl-6"> </span><span class="hl-10">&#39;2FA8E0C7230941478CE2CA3DB82DBEDF&#39;</span><span class="hl-6">, </span><span class="hl-8">basepath:</span><span class="hl-6"> </span><span class="hl-10">&#39;assets/animates/&#39;</span><span class="hl-6">, </span><span class="hl-8">filepath:</span><span class="hl-6"> </span><span class="hl-10">&#39;title.js&#39;</span><span class="hl-6"> }</span><br/><span class="hl-6">});</span><br/><br/><span class="hl-5">class</span><span class="hl-6"> </span><span class="hl-11">Root</span><span class="hl-6"> </span><span class="hl-5">extends</span><span class="hl-6"> </span><span class="hl-11">Pixim</span><span class="hl-6">.</span><span class="hl-11">Container</span><span class="hl-6"> {</span><br/><span class="hl-6">	</span><span class="hl-5">constructor</span><span class="hl-6">(</span><span class="hl-8">$</span><span class="hl-6">) {</span><br/><span class="hl-6">		</span><span class="hl-5">super</span><span class="hl-6">();</span><br/><span class="hl-6">		</span><span class="hl-5">const</span><span class="hl-6"> </span><span class="hl-7">content</span><span class="hl-6"> = </span><span class="hl-8">$</span><span class="hl-6">.</span><span class="hl-8">resources</span><span class="hl-6">.</span><span class="hl-8">animateContents</span><span class="hl-6">.</span><span class="hl-8">title</span><span class="hl-6">;</span><br/><span class="hl-6">		</span><span class="hl-5">const</span><span class="hl-6"> </span><span class="hl-7">container</span><span class="hl-6"> = </span><span class="hl-5">new</span><span class="hl-6"> </span><span class="hl-9">AnimateContainer</span><span class="hl-6">();</span><br/><span class="hl-6">		</span><span class="hl-5">this</span><span class="hl-6">.</span><span class="hl-9">addChild</span><span class="hl-6">(</span><span class="hl-8">container</span><span class="hl-6">);</span><br/><span class="hl-6">		</span><span class="hl-8">container</span><span class="hl-6">.</span><span class="hl-9">addCreatejs</span><span class="hl-6">(</span><span class="hl-8">content</span><span class="hl-6">.</span><span class="hl-9">create</span><span class="hl-6">(</span><span class="hl-10">&#39;title&#39;</span><span class="hl-6">));   </span><span class="hl-12">// the symbol the published HTML used as its root</span><br/><span class="hl-6">	}</span><br/><span class="hl-6">}</span><br/><br/><span class="hl-8">Game</span><span class="hl-6">.</span><span class="hl-9">defineLibraries</span><span class="hl-6">({ </span><span class="hl-8">root:</span><span class="hl-6"> </span><span class="hl-8">Root</span><span class="hl-6"> });</span>
+</code><button type="button">Copy</button></pre>
+
+<p>When the application attaches the content, the runtime content file and the content's images are loaded with
+the content's other assets, and the <code>title</code> symbol plays at the frame rate it was published with while the
+container is on the display tree.</p>
+<ul>
+<li><code>id</code> is the composition id (the command line tool prints it, and it is written at the top of the runtime
+content file)</li>
+<li><code>basepath</code> is the directory the runtime content file and the content's images are in, relative to the base
+path of the Pixim content (its <code>basepath</code> option)</li>
+<li><code>filepath</code> is the runtime content file, relative to <code>basepath</code>. Without it, the file has to be loaded
+already (by a script tag, for example)</li>
+<li><code>options</code> takes what pixi-animate-runtime's <code>loadContentAsync</code> takes: <code>crossOrigin: false</code> loads the images
+without CORS, and <code>handleManifest(manifest)</code> is called with the content's images (<code>{ id, src }</code>) before they are
+loaded, so that their <code>src</code> can be changed for this load (to a <code>data:</code> URL, for example)</li>
+<li><code>defineAnimateContentsTo(Game, targets, { unrequired: true })</code> gives <code>null</code> for a content that could not be
+loaded instead of failing the whole Pixim content. <code>addAnimateContentsTo(game, targets)</code> adds contents to
+one instance of a Pixim content</li>
+</ul>
+<p>What <code>$.resources.animateContents.title</code> holds is the content as pixi-animate-runtime's <code>loadContentAsync</code>
+gives it: <code>id</code>, <code>lib</code>, <code>properties</code> and <code>create(id)</code>.</p>
+<h3 id="options-of-the-pixim-content" class="tsd-anchor-link">Options of the Pixim content<a href="#options-of-the-pixim-content" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The options a Pixim content is created with apply as they do to its other assets:</p>
+<pre><code class="js"><span class="hl-5">new</span><span class="hl-6"> </span><span class="hl-9">Game</span><span class="hl-6">({</span><br/><span class="hl-6">	</span><span class="hl-8">basepath:</span><span class="hl-6"> </span><span class="hl-10">&#39;https://example.com/&#39;</span><span class="hl-6">,</span><br/><span class="hl-6">	</span><span class="hl-8">version:</span><span class="hl-6"> </span><span class="hl-13">12</span><span class="hl-6">,</span><br/><span class="hl-6">	</span><span class="hl-8">xhr:</span><span class="hl-6"> { </span><span class="hl-8">requestOptions:</span><span class="hl-6"> { </span><span class="hl-8">credentials:</span><span class="hl-6"> </span><span class="hl-10">&#39;include&#39;</span><span class="hl-6"> } },</span><br/><span class="hl-6">	</span><span class="hl-8">typeOptions:</span><span class="hl-6"> { </span><span class="hl-8">animateContents:</span><span class="hl-6"> { </span><span class="hl-8">fileVersion:</span><span class="hl-6"> </span><span class="hl-13">3</span><span class="hl-6">, </span><span class="hl-8">assetVersion:</span><span class="hl-6"> </span><span class="hl-13">5</span><span class="hl-6"> } }</span><br/><span class="hl-6">});</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li><code>version</code> adds <code>_fv=&lt;version&gt;</code> to the URLs of the runtime content files and the images (the query Animate
+adds to each image path on every publish stays). <code>fileVersion</code> and <code>assetVersion</code> under
+<code>typeOptions.animateContents</code> set it for the files and for the images separately</li>
+<li>With <code>xhr</code>, the runtime content files and the images are fetched with its request options. The images are
+fetched after the target's <code>handleManifest</code> is called, so an image it gives a <code>data:</code> URL is not fetched</li>
+</ul>
+<h3 id="playing" class="tsd-anchor-link">Playing<a href="#playing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>AnimateContainer</code> is a Pixim container. While it is on the display tree of a running application, every
+frame of the application plays the roots put on it with <code>addCreatejs</code>, at their content's frame rate.</p>
+<ul>
+<li><code>taskEnabled = false</code> stops playing; the container's <code>task</code> is free for your own use (clearing it does not
+stop playing)</li>
+<li><code>speed</code> changes the playback speed (<code>1</code> is the published frame rate, <code>0</code> stops). <code>overSpeed = false</code> plays at
+most one frame per frame of the application</li>
+<li><code>smooth</code> (<code>true</code> by default) keeps the playing even when the time between frames of the application varies a
+little, while keeping to the real time, as described for pixi-animate-runtime. <code>false</code> plays by the time of
+each frame as it is</li>
+<li><code>removeCreatejs(instance)</code> takes an instance off; a movie clip put on again starts from its first frame</li>
+</ul>
+<p>Everything pixi-animate-runtime exports is in <code>Pixim.animateRuntime</code> too (<code>loadContentAsync</code>, <code>tick</code>, the
+CreateJS-compatible classes, <code>VERSION</code> and so on), except that <code>AnimateContainer</code> is the Pixim container.
+With a bundler, import from <code>@tawaship/pixim-animate-runtime</code>.</p>
+<h2 id="coming-from-pixim-animate-container" class="tsd-anchor-link">Coming from pixim-animate-container<a href="#coming-from-pixim-animate-container" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>pixim-animate-container loads CreateJS and the published JavaScript as assets of a Pixim content and runs them
+in the browser. This package loads runtime content files instead, generated from the published JavaScript at
+development time: CreateJS is not loaded, and after publishing again from Animate the runtime content has to
+be generated again. How the content is played otherwise changes as described for pixi-animate-runtime
+(see its README).</p>
+<p>Contents are defined and used the same way, under new names:</p>
+<table>
+<thead>
+<tr>
+<th>pixim-animate-container</th>
+<th>pixim-animate-runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <code>&lt;script&gt;</code> tag for CreateJS</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>Pixim.animate</code></td>
+<td><code>Pixim.animateRuntime</code></td>
+</tr>
+<tr>
+<td><code>defineAnimatesTo(Game, { name: { id, basepath, filepath } })</code>, <code>filepath</code> being the published <code>.js</code></td>
+<td><code>defineAnimateContentsTo(Game, { name: { id, basepath, filepath } })</code>, <code>filepath</code> being the runtime content file</td>
+</tr>
+<tr>
+<td><code>addAnimatesTo</code></td>
+<td><code>addAnimateContentsTo</code></td>
+</tr>
+<tr>
+<td><code>$.resources.animates.name</code>, the <code>lib</code> of the content</td>
+<td><code>$.resources.animateContents.name</code>, the content (its classes are in <code>content.lib</code>)</td>
+</tr>
+<tr>
+<td><code>new $.resources.animates.name.game()</code></td>
+<td><code>$.resources.animateContents.name.create('game')</code></td>
+</tr>
+<tr>
+<td><code>Pixim.animate.Container</code></td>
+<td><code>AnimateContainer</code></td>
+</tr>
+<tr>
+<td><code>createjsSpeed</code></td>
+<td><code>speed</code></td>
+</tr>
+<tr>
+<td><code>createjsOverSpeed</code></td>
+<td><code>overSpeed</code></td>
+</tr>
+<tr>
+<td>(none)</td>
+<td><code>smooth</code> (on by default; <code>false</code> plays as pixim-animate-container does)</td>
+</tr>
+</tbody>
+</table>
+<p>Not available: <code>replaceInstance()</code> on movie clips and <code>replaceTexture()</code> on sprites and bitmaps, besides what
+pixi-animate-runtime does not have.</p>
+<h2 id="how-correctness-is-checked" class="tsd-anchor-link">How correctness is checked<a href="#how-correctness-is-checked" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This package was developed with Claude (Anthropic's AI assistant). Its correctness rests on testing rather
+than on trust in the author: it is run with Pixim.js, and what it loads (URLs, versions, request options,
+images fetched into blob: URLs and released) and how its container plays (frame by frame, against the player
+of pixi-animate-runtime given the same frame times) are compared with what is expected. Known faults are put
+into the package on purpose to confirm that the comparison notices them.</p>
+<h2 id="change-log" class="tsd-anchor-link">Change log<a href="#change-log" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="010" class="tsd-anchor-link">0.1.0<a href="#010" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>First release: loads runtime content as an asset of a Pixim content (<code>defineAnimateContentsTo</code>, <code>addAnimateContentsTo</code>,
+with the Pixim content's <code>version</code> and <code>xhr</code>) and plays it in a Pixim container (<code>AnimateContainer</code>, with <code>speed</code>,
+<code>overSpeed</code> and <code>smooth</code>)</li>
+</ul>
+<h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>MIT</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#tawashippixim-animate-runtime"><span>@tawaship/pixim-<wbr/>animate-<wbr/>runtime</span></a>
+<ul>
+<li><a href="#what-you-need"><span>What you need</span></a></li>
+<li><a href="#supported-versions"><span>Supported versions</span></a></li>
+<li><a href="#playing-content"><span>Playing content</span></a></li>
+<li>
+<ul>
+<li><a href="#options-of-the-pixim-content"><span>Options of the <wbr/>Pixim content</span></a></li>
+<li><a href="#playing"><span>Playing</span></a></li></ul></li>
+<li><a href="#coming-from-pixim-animate-container"><span>Coming from pixim-<wbr/>animate-<wbr/>container</span></a></li>
+<li><a href="#how-correctness-is-checked"><span>How correctness is checked</span></a></li>
+<li><a href="#change-log"><span>Change log</span></a></li>
+<li>
+<ul>
+<li><a href="#010"><span>0.1.0</span></a></li></ul></li>
+<li><a href="#license"><span>License</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html">@tawaship/pixim-animate-runtime - v0.1.0</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

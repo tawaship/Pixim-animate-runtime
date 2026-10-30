@@ -1,5 +1,5 @@
 /*!
- * @tawaship/pixim-animate-runtime - v0.0.0
+ * @tawaship/pixim-animate-runtime - v0.1.0
  * 
  * @require pixi.js ^5.3.2
  * @require @tawaship/pixim.js ^1.15.2
@@ -33,13 +33,16 @@ var AnimateContainer = /*@__PURE__*/(function (Container) {
     AnimateContainer.prototype = Object.create( Container && Container.prototype );
     AnimateContainer.prototype.constructor = AnimateContainer;
 
-    var prototypeAccessors = { speed: { configurable: true },overSpeed: { configurable: true } };
+    var prototypeAccessors = { speed: { configurable: true },overSpeed: { configurable: true },smooth: { configurable: true } };
     /** Playback speed (1 is the content's own frame rate) */
     prototypeAccessors.speed.get = function () { return this._controller.speed; };
     prototypeAccessors.speed.set = function (value) { this._controller.speed = value; };
     /** Whether one frame of the application may play more than one frame of a root (when the display runs slower than the content) */
     prototypeAccessors.overSpeed.get = function () { return this._controller.overSpeed; };
     prototypeAccessors.overSpeed.set = function (value) { this._controller.overSpeed = value; };
+    /** Whether frames are played by a steady clock, so that small changes of the delta do not make the playing uneven */
+    prototypeAccessors.smooth.get = function () { return this._controller.smooth; };
+    prototypeAccessors.smooth.set = function (value) { this._controller.smooth = value; };
     AnimateContainer.prototype.updateTask = function updateTask (e) {
         Container.prototype.updateTask.call(this, e);
         if (!this.taskEnabled) {

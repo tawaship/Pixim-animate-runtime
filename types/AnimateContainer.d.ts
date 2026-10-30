@@ -21,6 +21,9 @@ export declare class AnimateContainer extends Container {
     /** Whether one frame of the application may play more than one frame of a root (when the display runs slower than the content) */
     get overSpeed(): boolean;
     set overSpeed(value: boolean);
+    /** Whether frames are played by a steady clock, so that small changes of the delta do not make the playing uneven */
+    get smooth(): boolean;
+    set smooth(value: boolean);
     updateTask(e: ITickerData): void;
     /** Plays the roots by hand, as one frame of the application with this delta does */
     handleTick(delta: number): void;

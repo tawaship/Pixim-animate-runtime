@@ -29,6 +29,10 @@ export class AnimateContainer extends Container {
 	get overSpeed(): boolean { return this._controller.overSpeed; }
 	set overSpeed(value: boolean) { this._controller.overSpeed = value; }
 
+	/** Whether frames are played by a steady clock, so that small changes of the delta do not make the playing uneven */
+	get smooth(): boolean { return this._controller.smooth; }
+	set smooth(value: boolean) { this._controller.smooth = value; }
+
 	updateTask(e: ITickerData): void {
 		super.updateTask(e);
 		if (!this.taskEnabled) {
