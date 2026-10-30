@@ -60,8 +60,9 @@ my-project/
    npx pixi-animate-runtime animate --out-dir public/animates
    ```
 
-   This writes `public/animates/title.js` (the runtime content) and copies the images it uses into
-   `public/animates/images/`. It prints the content's **composition id**, which the next step needs.
+   It lists what it will write and asks; answer `y`. This writes `public/animates/title.js` (the runtime
+   content) and copies the images it uses into `public/animates/images/`. The list shows the content's
+   **composition id**, which the next step needs.
 
 4. **Play.** In `public/index.html`, load PixiJS, Pixim.js and this package, define the content as an asset of
    a Pixim content, and put the symbol the published HTML showed (named after the published file, here `title`)

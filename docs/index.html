@@ -55,8 +55,9 @@ with a bundler).</p>
 <pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">pixi</span><span class="hl-1">-</span><span class="hl-0">animate</span><span class="hl-1">-</span><span class="hl-0">runtime</span><span class="hl-1"> </span><span class="hl-0">animate</span><span class="hl-1"> --</span><span class="hl-0">out</span><span class="hl-1">-</span><span class="hl-0">dir</span><span class="hl-1"> </span><span class="hl-0">public</span><span class="hl-1">/</span><span class="hl-0">animates</span>
 </code><button>Copy</button></pre>
 
-<p>This writes <code>public/animates/title.js</code> (the runtime content) and copies the images it uses into
-<code>public/animates/images/</code>. It prints the content's <strong>composition id</strong>, which the next step needs.</p>
+<p>It lists what it will write and asks; answer <code>y</code>. This writes <code>public/animates/title.js</code> (the runtime
+content) and copies the images it uses into <code>public/animates/images/</code>. The list shows the content's
+<strong>composition id</strong>, which the next step needs.</p>
 </li>
 <li>
 <p><strong>Play.</strong> In <code>public/index.html</code>, load PixiJS, Pixim.js and this package, define the content as an asset of
