@@ -57,7 +57,7 @@ my-project/
 3. **Convert.** From the project's root:
 
    ```
-   npx pixi-animate-runtime animate --out-dir public/animates
+   npx --no-install @tawaship/pixi-animate-runtime animate --out-dir public/animates
    ```
 
    It lists what it will write and asks; answer `y`. This writes `public/animates/title.js` (the runtime
@@ -109,7 +109,7 @@ of the Pixim content and the [container](#playing). Converting is explained in
 
 - PixiJS 5.3 (`pixi.js` ^5.3.2) and Pixim.js 1.15 (`@tawaship/pixim.js` ^1.15.2) in your application
 - Runtime content files, made from the published content with the command line tool of pixi-animate-runtime
-  (`npx pixi-animate-runtime <published directory>`)
+  (`npx --no-install @tawaship/pixi-animate-runtime <published directory>`)
 
 ## Supported versions
 

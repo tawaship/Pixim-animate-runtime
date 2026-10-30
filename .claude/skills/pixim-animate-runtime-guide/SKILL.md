@@ -25,7 +25,7 @@ This package bundles the player of pixi-animate-runtime (do not load pixi-animat
 - Contents are **assets of a Pixim content**: defined with `defineAnimateContentsTo`, loaded with the content's other assets, and given as `$.resources.animateContents[name]`
 - `AnimateContainer` is a **Pixim container** that plays the instances put on it through its task, while it is on the display tree of a running application
 
-As with pixi-animate-runtime, **runtime content files are generated at development time** (`npx pixi-animate-runtime <published directory>`) and must be generated again after publishing again from Animate. CreateJS and the published `.js` are never loaded.
+As with pixi-animate-runtime, **runtime content files are generated at development time** (`npx --no-install @tawaship/pixi-animate-runtime <published directory>`) and must be generated again after publishing again from Animate. CreateJS and the published `.js` are never loaded.
 
 ## Type definition files
 
@@ -74,7 +74,7 @@ class Root extends Pixim.Container {
 Game.defineLibraries({ root: Root });
 ```
 
-- `id`: the composition id (printed by `npx pixi-animate-runtime`, and written at the top of the runtime content file)
+- `id`: the composition id (printed by `npx --no-install @tawaship/pixi-animate-runtime`, and written at the top of the runtime content file)
 - `basepath`: the directory of the runtime content file and its images, relative to the Pixim content's `basepath` option
 - `filepath`: the runtime content file, relative to `basepath`. Without it, the file has to be loaded already (by a script tag)
 - `options`: as pixi-animate-runtime's `loadContentAsync` (`crossOrigin`, `handleManifest`)
